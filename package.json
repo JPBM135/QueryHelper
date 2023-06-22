@@ -1,0 +1,50 @@
+{
+  "name": "@jpbm135/template",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build:clean": "del-cli dist",
+    "build:check": "tsc --declaration --emitDeclarationOnly",
+    "build:esm": "swc ./src --out-dir ./dist",
+    "build": "yarn build:clean && yarn build:check && yarn build:esm",
+    "build:watch": "swc ./src --out-dir ./dist --watch --source-maps",
+    "lint": "prettier --check . && eslint src --ext ts",
+    "format": "prettier --write . && eslint src --ext ts --fix",
+    "fmt": "yarn format",
+    "start": "env-cmd node --enable-source-maps dist/index.js",
+    "start:dev": "yarn build && yarn dev",
+    "dev": "env-cmd node --enable-source-maps dist/index.js",
+    "update": "yarn upgrade-interactive",
+    "server:update": "git pull && yarn --immutable && yarn build && pm2 restart {0}",
+    "test": "vitest run --dir test",
+    "test:watch": "vitest --ui"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "JPBM135 <jpedrobm0@gmail.com>",
+  "license": "AGPL-3.0",
+  "private": true,
+  "dependencies": {
+    "yarn": "^1.22.19"
+  },
+  "devDependencies": {
+    "@swc/cli": "^0.1.62",
+    "@swc/core": "^1.3.64",
+    "@types/node": "^20.3.1",
+    "@vitest/coverage-v8": "^0.32.2",
+    "@vitest/ui": "^0.32.2",
+    "chokidar": "^3.5.3",
+    "cpy-cli": "^4.2.0",
+    "del-cli": "^5.0.0",
+    "env-cmd": "^10.1.0",
+    "eslint": "^8.43.0",
+    "eslint-config-neon": "^0.1.47",
+    "prettier": "^2.8.8",
+    "typescript": "^5.1.3",
+    "vitest": "^0.32.2"
+  },
+  "engines": {
+    "node": ">=17.9.0"
+  },
+  "packageManager": "yarn@3.6.0"
+}
